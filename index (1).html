@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>العد التنازلي للفرح ❤️</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      min-height:100vh;display:flex;justify-content:center;align-items:center;
+      overflow:hidden;font-family:Tahoma,Arial,sans-serif;color:#fff;text-align:center;
+      background:
+        radial-gradient(circle at 15% 20%,rgba(255,190,150,.18),transparent 25%),
+        radial-gradient(circle at 85% 75%,rgba(210,150,120,.15),transparent 30%),
+        linear-gradient(135deg,#160f14 0%,#3b222c 48%,#120d12 100%);
+    }
+    .container{
+      width:92%;max-width:720px;text-align:center;padding:42px 24px;
+      background:rgba(20,12,17,.58);border:1px solid rgba(255,255,255,.13);
+      border-radius:30px;box-shadow:0 25px 70px rgba(0,0,0,.45);
+      backdrop-filter:blur(14px);position:relative;z-index:2;
+    }
+    .heart{font-size:27px;color:#f2b5a5;margin-bottom:13px}
+    .line{width:80px;height:1px;background:rgba(255,210,190,.7);margin:0 auto 18px}
+    h1{font-size:clamp(31px,8vw,55px);font-weight:700;margin-bottom:13px}
+    .subtitle{font-size:17px;letter-spacing:3px;opacity:.72;direction:ltr;margin-bottom:25px}
+    .date{font-size:clamp(19px,4vw,25px);color:#f3d3c4;margin-bottom:30px}
+    .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .box{padding:20px 7px;border-radius:18px;background:rgba(255,255,255,.055);border:1px solid rgba(235,190,165,.35)}
+    .number{display:block;font-size:clamp(28px,7vw,44px);font-weight:bold;color:#f6d8c9}
+    .label{display:block;margin-top:9px;font-size:14px;color:rgba(255,255,255,.68)}
+    .bottom{margin-top:30px;color:#e8b9aa;font-size:20px}
+    .small-heart{margin:0 8px}
+    .floating-heart{position:fixed;bottom:-30px;color:rgba(255,190,175,.22);font-size:22px;animation:floatUp 10s linear infinite;pointer-events:none}
+    .h1{left:10%;animation-delay:0s}.h2{left:28%;animation-delay:3s}.h3{left:52%;animation-delay:6s}.h4{left:76%;animation-delay:2s}.h5{left:90%;animation-delay:5s}
+    @keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.7}100%{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+    @media(max-width:520px){
+      .container{padding:34px 14px;border-radius:24px}.countdown{gap:7px}
+      .box{padding:17px 4px;border-radius:14px}.number{font-size:27px}
+      .label{font-size:12px}.subtitle{font-size:13px;letter-spacing:2px}
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-heart h1">♥</div>
+  <div class="floating-heart h2">♥</div>
+  <div class="floating-heart h3">♥</div>
+  <div class="floating-heart h4">♥</div>
+  <div class="floating-heart h5">♥</div>
+
+  <main class="container">
+    <div class="heart">♥</div>
+    <div class="line"></div>
+    <h1>العد التنازلي للفرح</h1>
+    <div class="subtitle">OUR WEDDING COUNTDOWN</div>
+    <div class="date">السبت 26 سبتمبر 2026</div>
+
+    <section class="countdown">
+      <div class="box"><span class="number" id="days">0</span><span class="label">يوم</span></div>
+      <div class="box"><span class="number" id="hours">0</span><span class="label">ساعة</span></div>
+      <div class="box"><span class="number" id="minutes">0</span><span class="label">دقيقة</span></div>
+      <div class="box"><span class="number" id="seconds">0</span><span class="label">ثانية</span></div>
+    </section>
+
+    <div class="bottom">
+      <span class="small-heart">♥</span>
+      مستنيين اليوم الكبير
+      <span class="small-heart">♥</span>
+    </div>
+  </main>
+
+  <script>
+    const weddingDate = new Date("2026-09-26T17:00:00+03:00").getTime();
+
+    function updateCountdown(){
+      const distance = weddingDate - Date.now();
+
+      if(distance <= 0){
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("minutes").textContent = "0";
+        document.getElementById("seconds").textContent = "0";
+        document.querySelector(".bottom").innerHTML = "🎉 اليوم هو يوم الفرح ❤️";
+        return;
+      }
+
+      document.getElementById("days").textContent =
+        Math.floor(distance / 86400000);
+
+      document.getElementById("hours").textContent =
+        Math.floor((distance % 86400000) / 3600000);
+
+      document.getElementById("minutes").textContent =
+        Math.floor((distance % 3600000) / 60000);
+
+      document.getElementById("seconds").textContent =
+        Math.floor((distance % 60000) / 1000);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
